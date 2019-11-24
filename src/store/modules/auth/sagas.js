@@ -1,9 +1,9 @@
-import { all, takeLatest, call, put, take } from 'redux-saga/effects';
+import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import constants from './constants';
 import history from '~/services/history';
 import api from '~/services/api';
-import { signInSuccess, signFailure, signUpRequest } from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
   try {

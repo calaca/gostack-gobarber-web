@@ -20,6 +20,17 @@ export function signInSuccess(token, user) {
   };
 }
 
+export function signUpRequest(name, email, password) {
+  return {
+    type: constants.authSignUpRequest,
+    payload: {
+      name,
+      email,
+      password,
+    },
+  };
+}
+
 export function signFailure() {
   return {
     type: constants.authSignFailure,

@@ -1,8 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as yup from 'yup';
 import logo from '~/assets/logo.svg';
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 const schema = yup.object().shape({
   name: yup.string().required('O nome é obrigatório'),
@@ -17,8 +19,11 @@ const schema = yup.object().shape({
 });
 
 export default function SignUn() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
+
+  function handleSubmit({ name, email, password }) {
+    dispatch(signUpRequest(name, email, password));
   }
 
   return (
@@ -28,7 +33,9 @@ export default function SignUn() {
         <Input name="name" type="text" placeholder="Nome completo" />
         <Input name="email" type="email" placeholder="Email" />
         <Input name="password" type="password" placeholder="Senha" />
-        <button type="submit">Criar conta</button>
+        <button type="submit">
+          {loading ? 'Carregando...' : 'Criar conta'}
+        </button>
         <Link to="/">Já tenho conta</Link>
       </Form>
     </>

@@ -36,3 +36,9 @@ export function signFailure() {
     type: constants.authSignFailure,
   };
 }
+
+export function signOut() {
+  return {
+    type: constants.authSignOut,
+  };
+}
